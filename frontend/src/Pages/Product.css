@@ -1,0 +1,57 @@
+/* Style for the main container */
+.product-page-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header styling */
+.product-page-header {
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    /* border: solid 1px red; */
+    margin-bottom: 20px;
+}
+
+/* Button styling */
+.product-page-button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.product-page-button:hover {
+    background-color: #0056b3;
+}
+
+/* Input box styling */
+.product-page-input {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    flex: 1; /* Expand input box to fill remaining space */
+}
+
+/* Table styling */
+.product-list-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.product-list-table th, .product-list-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.product-list-table th {
+    background-color: #f8f9fa;
+}
