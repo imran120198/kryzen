@@ -1,8 +1,11 @@
 const { Router } = require("express");
+const { UserModel } = require("../Model/User.schema");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 require("dotenv").config();
 
-UserRouter = Router();
+const UserRouter = Router();
 
 //signup
 UserRouter.post("/signup", async (req, res) => {
@@ -47,8 +50,6 @@ UserRouter.post("/login", async (req, res) => {
       .send("Something went wrong in Login, please try again later");
   }
 });
-
-const UserRouter = Router();
 
 module.exports = {
   UserRouter,

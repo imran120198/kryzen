@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 const seq = require("../Connection/connection");
 const { UserModel } = require("./User.schema");
 
-const ProductModel = sequelize.define("Product", {
+const ProductModel = seq.define("Product", {
   name: {
     type: DataTypes.STRING,
     allowNull: false,
