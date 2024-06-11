@@ -45,7 +45,7 @@ const ProductList = ({
           <option value="highToLow">High to Low</option>
         </Select>
       </Flex>
-      <table>
+      <table width={"90%"} m={"auto"}>
         <thead>
           <tr>
             <th>Image</th>

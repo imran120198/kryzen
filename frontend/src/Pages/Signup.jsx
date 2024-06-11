@@ -64,7 +64,7 @@ const Signup = () => {
   return (
     <div>
       <Navbar />
-      <Heading mb="5">Sign Up Page</Heading>
+      <Heading mb="5">Signup</Heading>
 
       <Box
         margin="auto"
@@ -121,7 +121,7 @@ const Signup = () => {
           // onClick={createuser} disabled={loading}
           onClick={handleSubmit}
         >
-          Sign Up
+          Signup
         </Button>
       </Box>
     </div>
