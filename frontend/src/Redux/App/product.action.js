@@ -3,7 +3,7 @@ import {
   USER_PROFILE_ERROR,
   USER_PROFILE_REQUEST,
   USER_PROFILE_SUCCESS,
-} from "./product.types";
+} from "./product.actionTypes";
 export const getUserProfile = () => async (dispatch) => {
   dispatch({
     type: USER_PROFILE_REQUEST,
@@ -15,7 +15,7 @@ export const getUserProfile = () => async (dispatch) => {
   };
   try {
     const { data } = await axios.get(
-      `https://kryzen-backend-3v2h.onrender.com`,
+      `https://kryzen-backend-3v2h.onrender.com/product`,
       config
     );
     console.log(data);

@@ -24,7 +24,7 @@ const Product = () => {
   const fetchProducts = async () => {
     try {
       const response = await axios.get(
-        "https://kryzen-backend-3v2h.onrender.com/product/myproduct",
+        "https://kryzen-backend-3v2h.onrender.com/product/",
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("userToken")}`,

@@ -80,10 +80,14 @@ const ProductList = ({
               <td>{product.price}</td>
               <td>{product.product_type}</td>
               <td>
-                <button onClick={() => onEdit(product)}>Edit</button>
+                <Button colorScheme="green" onClick={() => onEdit(product)}>
+                  Edit
+                </Button>
               </td>
               <td>
-                <button onClick={() => onDelete(product.id)}>Delete</button>
+                <Button colorScheme="red" onClick={() => onDelete(product.id)}>
+                  Delete
+                </Button>
               </td>
             </tr>
           ))}
