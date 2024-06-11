@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import ".././App.css";
 import Navbar from "../Components/Navbar";
 import { LogIn } from "../Redux/Auth/auth.action";
+
 const init = {
   email: "",
   password: "",
@@ -22,6 +23,7 @@ const init = {
 const Login = () => {
   const [formData, setFormData] = useState(init);
   const [show, setShow] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const handleClick = () => setShow(!show);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -30,8 +32,10 @@ const Login = () => {
 
   const handleForm = async (e) => {
     e.preventDefault();
+    setIsLoading(true); // Set loading to true
     console.log(formData);
-    dispatch(LogIn(formData));
+    await dispatch(LogIn(formData));
+    setIsLoading(false); // Set loading to false after dispatch
   };
 
   const handleChange = (e) => {
@@ -98,6 +102,7 @@ const Login = () => {
               py="5"
               mt="10"
               type="submit"
+              isLoading={isLoading} // Set loading state to button
               loadingText="Logging in"
             >
               Login

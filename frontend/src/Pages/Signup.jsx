@@ -15,25 +15,27 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 
 const Signup = () => {
-  const usenavigate = useNavigate();
-
+  const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const toast = useToast();
+
   const handleSubmit = async () => {
     const payload = {
       email,
       password,
     };
 
+    setIsLoading(true); // Set loading to true when request starts
     try {
       let res = await axios.post(
         "https://kryzen-backend-3v2h.onrender.com/user/signup",
         payload
       );
-      // console.log("Hello",res.data)
+
       if (res.data === "User already exists") {
         toast({
           description: res.data,
@@ -41,15 +43,15 @@ const Signup = () => {
           duration: 2000,
           isClosable: true,
         });
-        return;
+      } else {
+        toast({
+          description: res.data,
+          status: "success",
+          duration: 2000,
+          isClosable: true,
+        });
+        navigate("/login");
       }
-      toast({
-        description: res.data,
-        status: "success",
-        duration: 2000,
-        isClosable: true,
-      });
-      usenavigate("/login");
     } catch (err) {
       toast({
         description: "Invalid Data",
@@ -59,6 +61,7 @@ const Signup = () => {
       });
       console.log(err);
     }
+    setIsLoading(false); // Reset loading state when request completes
   };
 
   return (
@@ -118,8 +121,9 @@ const Signup = () => {
           variant={"solid"}
           marginTop="10"
           mb="10"
-          // onClick={createuser} disabled={loading}
           onClick={handleSubmit}
+          isLoading={isLoading} // Show loading state
+          loadingText="Signing up"
         >
           Signup
         </Button>
