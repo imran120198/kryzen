@@ -22,7 +22,7 @@ export const LogIn = (creds) => async (dispatch) => {
       type: LOGIN,
       payload: data.token,
       token: localStorage.setItem("userToken", data.token),
-      userUID: localStorage.setItem("name", data.name),
+      userUID: localStorage.setItem("userUID", data.userUID)
     });
   } catch ({
     response: {

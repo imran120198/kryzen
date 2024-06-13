@@ -45,10 +45,10 @@ const Login = () => {
     }));
   };
 
-  let name = localStorage.getItem("name");
+  let userUID = localStorage.getItem("userUID");
 
   if (auth.isAuth) {
-    navigate(`/${name}/product-page`);
+    navigate(`/${userUID}/product-page`);
   }
 
   return (

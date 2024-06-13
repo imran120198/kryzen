@@ -33,7 +33,7 @@ const Navbar = () => {
           mr={"40px"}
         >
           <Text color={"black"} fontSize="20px">
-            <NavLink to="/product-page">Product</NavLink>
+            <NavLink>Product</NavLink>
           </Text>
           <Text color={"black"} fontSize="20px">
             {isAuth ? "" : <NavLink to="/">Signup</NavLink>}

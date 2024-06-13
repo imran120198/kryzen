@@ -12,7 +12,7 @@ const AllRoutes = () => {
         <Route path="/" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route
-          path="/:name/product-page"
+          path="/:userUID/product-page"
           element={
             <Privateroute>
               <Product />
