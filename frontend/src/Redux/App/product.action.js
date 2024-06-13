@@ -8,9 +8,10 @@ export const getUserProfile = () => async (dispatch) => {
   dispatch({
     type: USER_PROFILE_REQUEST,
   });
+  
   const config = {
     headers: {
-      authorization: `Bearer ${localStorage.getItem("token")}`,
+      authorization: `Bearer ${localStorage.getItem("userToken")}`,
     },
   };
   try {

@@ -1,15 +1,13 @@
 import { Button, Flex, Select } from "@chakra-ui/react";
 import React, { useState } from "react";
+import { useToast } from "@chakra-ui/react";
+import axios from "axios";
 
-const ProductList = ({
-  products,
-  onEdit,
-  onDelete,
-  onFilter,
-  onSortByTime,
-}) => {
+const ProductList = ({ products, onEdit, onFilter, onSortByTime }) => {
   const [filterType, setFilterType] = useState("");
   const [priceOrder, setPriceOrder] = useState("");
+
+  const toast = useToast();
 
   const handleFilterTypeChange = (event) => {
     const selectedType = event.target.value;
@@ -21,6 +19,27 @@ const ProductList = ({
     const selectedOrder = event.target.value;
     setPriceOrder(selectedOrder);
     onFilter({ priceOrder: selectedOrder });
+  };
+
+  const handleDeleteProduct = async (id) => {
+    try {
+      await axios.delete(
+        `https://kryzen-backend-3v2h.onrender.com/product/delete/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+          },
+        }
+      );
+      toast({
+        description: "Product deleted successfully",
+        status: "success",
+        duration: 2000,
+        isClosable: true,
+      });
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    }
   };
 
   return (
@@ -85,7 +104,10 @@ const ProductList = ({
                 </Button>
               </td>
               <td>
-                <Button colorScheme="red" onClick={() => onDelete(product.id)}>
+                <Button
+                  colorScheme="red"
+                  onClick={() => handleDeleteProduct(product.id)}
+                >
                   Delete
                 </Button>
               </td>

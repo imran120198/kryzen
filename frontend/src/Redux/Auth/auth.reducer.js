@@ -11,9 +11,6 @@ export const authReducer = (state = initState, { type, payload }) => {
         ...state,
         isAuth: false,
         token: "",
-        // role: "",
-        // loading: true,
-        // error: false
       };
     }
 
@@ -30,10 +27,6 @@ export const authReducer = (state = initState, { type, payload }) => {
         ...state,
         isAuth: false,
         token: "",
-        // role: "",
-        // loading: false,
-        // error: true,
-        // errorMessage: payload
       };
     }
 

@@ -45,8 +45,10 @@ const Login = () => {
     }));
   };
 
+  let name = localStorage.getItem("name");
+
   if (auth.isAuth) {
-    navigate("/product-page");
+    navigate(`/${name}/product-page`);
   }
 
   return (

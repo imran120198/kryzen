@@ -72,27 +72,27 @@ const Product = () => {
     }
   };
 
-  const handleDeleteProduct = async (id) => {
-    try {
-      await axios.delete(
-        `https://kryzen-backend-3v2h.onrender.com/product/delete/${id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("userToken")}`,
-          },
-        }
-      );
-      toast({
-        description: "Product deleted successfully",
-        status: "success",
-        duration: 2000,
-        isClosable: true,
-      });
-      fetchProducts();
-    } catch (error) {
-      console.error("Error deleting product:", error);
-    }
-  };
+  // const handleDeleteProduct = async (id) => {
+  //   try {
+  //     await axios.delete(
+  //       `https://kryzen-backend-3v2h.onrender.com/product/delete/${id}`,
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+  //         },
+  //       }
+  //     );
+  //     toast({
+  //       description: "Product deleted successfully",
+  //       status: "success",
+  //       duration: 2000,
+  //       isClosable: true,
+  //     });
+  //     fetchProducts();
+  //   } catch (error) {
+  //     console.error("Error deleting product:", error);
+  //   }
+  // };
 
   const handleScheduleAddition = () => {
     const delay = parseInt(scheduleTime) * 60000;
@@ -180,7 +180,6 @@ const Product = () => {
             setEditProduct(product);
             setIsEditModalOpen(true);
           }}
-          onDelete={handleDeleteProduct}
           onFilter={handleFilter}
           onSortByTime={handleSortByTime}
         />

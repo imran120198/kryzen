@@ -16,12 +16,13 @@ export const LogIn = (creds) => async (dispatch) => {
 
     Swal.fire({
       icon: "success",
-      title: data.message,
+      title: data.msg,
     });
     return dispatch({
       type: LOGIN,
       payload: data.token,
       token: localStorage.setItem("userToken", data.token),
+      userUID: localStorage.setItem("name", data.name),
     });
   } catch ({
     response: {
