@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/user", UserRouter);
-app.use(authentication);
+// app.use(authentication);
 app.use("/product", ProductRouter);
 
 app.listen(PORT, () => {

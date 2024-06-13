@@ -10,7 +10,7 @@ const UserRouter = Router();
 //signup
 UserRouter.post("/signup", async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { name, email, password } = req.body;
     const result = await UserModel.findOne({ where: { email } });
 
     if (result) {
@@ -18,7 +18,7 @@ UserRouter.post("/signup", async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 4);
-    const user = await UserModel.create({ email, password: hashedPassword });
+    const user = await UserModel.create({ name, email, password: hashedPassword });
     res.status(200).send("Sign up successful");
   } catch (err) {
     console.log(err);
@@ -29,7 +29,7 @@ UserRouter.post("/signup", async (req, res) => {
 //login
 UserRouter.post("/login", async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { name, email, password } = req.body;
     const user = await UserModel.findOne({ where: { email } });
 
     if (!user) {

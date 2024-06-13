@@ -3,16 +3,18 @@ const { ProductModel } = require("../Model/Product.schema");
 
 const ProductRouter = Router();
 
-//get product data
+// Get all product data
 ProductRouter.get("/", async (req, res) => {
   try {
-    const product = await ProductModel.findAll();
-    res.status(200).send(product);
+    const products = await ProductModel.findAll();
+    res.status(200).send(products);
   } catch (error) {
-    res.status(500).send(error);
+    console.error(error);
+    res.status(500).send({ message: "Internal server error" });
   }
 });
 
+// Get products by user ID
 ProductRouter.get("/myproduct", async (req, res) => {
   try {
     const products = await ProductModel.findAll({
@@ -20,14 +22,16 @@ ProductRouter.get("/myproduct", async (req, res) => {
     });
     res.status(200).send(products);
   } catch (error) {
-    res.status(500).send(error);
+    console.error(error);
+    res.status(500).send({ message: "Internal server error" });
   }
 });
 
+// Create a new product
 ProductRouter.post("/create", async (req, res) => {
   try {
     const { name, description, price, image, product_type } = req.body;
-    const product = new ProductModel({
+    const product = await ProductModel.create({
       name,
       description,
       price,
@@ -35,19 +39,19 @@ ProductRouter.post("/create", async (req, res) => {
       product_type,
       user_id: req.userID,
     });
-    await product.save();
-    res.send({ message: "Product created successfully" });
+    res.status(201).send({ message: "Product created successfully", product });
   } catch (err) {
     console.error(err);
     res.status(500).send({ message: "Internal server error" });
   }
 });
 
+// Edit a product by ID
 ProductRouter.put("/edit/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const { name, description, price, image, product_type } = req.body;
-    console.log("Body", req.body);
+
     const product = await ProductModel.findOne({
       where: { id, user_id: req.userID },
     });
@@ -71,20 +75,20 @@ ProductRouter.put("/edit/:id", async (req, res) => {
   }
 });
 
-// Delete Product by Id
+// Delete product by ID
 ProductRouter.delete("/delete/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
-    const procduct = await ProductModel.findOne({
+    const product = await ProductModel.findOne({
       where: { id, user_id: req.userID },
     });
 
-    if (!procduct) {
+    if (!product) {
       return res.status(404).send("Product not found");
     }
 
-    await procduct.destroy();
+    await product.destroy();
     res.send("Product deleted successfully");
   } catch (err) {
     console.error(err);
